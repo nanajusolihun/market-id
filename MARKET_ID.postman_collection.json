@@ -1,0 +1,1478 @@
+{
+	"info": {
+		"_postman_id": "a29ffaa5-67f4-4d5b-8931-8f84db5eee59",
+		"name": "MARKET_ID",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28328576"
+	},
+	"item": [
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\" : \"El Rahma\",\r\n    \"email\" : \"elrahma@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users?q=&sort_by=asc&page=&per_page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"description": "sort by full_name"
+								},
+								{
+									"key": "sort_by",
+									"value": "asc",
+									"description": "asc|desc"
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "page"
+								},
+								{
+									"key": "per_page",
+									"value": "",
+									"description": "per_page"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"const token = responseJson?.data?.token;\r",
+									"if (token) pm.globals.set(\"token\", token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"eljuso@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"token\", \"\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/:_id/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":_id",
+								"logout"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64cccf2cbc0338150b703e84"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1//users/:_id/detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"",
+								"users",
+								":_id",
+								"detail"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64cccec34bb098462cd4a10c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "full_name",
+									"value": "ELSyamin",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/vladimir.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1//users/:_id/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"",
+								"users",
+								":_id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64cccec34bb098462cd4a10c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/:_id/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64cccec34bb098462cd4a10c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ROLES",
+			"item": [
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Customer \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/role/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/role/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/role/:_id/detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"role",
+								":_id",
+								"detail"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64c9937b294835c4ca8a3342"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"PutriMualida\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/role/:_id/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"role",
+								":_id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64c91b68383b116a140473ee"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/role/:_id/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"role",
+								":_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64c98befd49cadfbb547b047"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CATEGORIES",
+			"item": [
+				{
+					"name": "Create Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"JOGGER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories?sort_by=&page=&per_page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"description": "name",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "",
+									"description": "asc | desc"
+								},
+								{
+									"key": "page",
+									"value": ""
+								},
+								{
+									"key": "per_page",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/:_id/detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								":_id",
+								"detail"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64ccec0a66981ccf0bb0f252"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Sendal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/:_id/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								":_id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64ccecf2f920dcd93de45c39"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/:_id/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								":_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64ccec0a66981ccf0bb0f252"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCTS",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Celana Jeans Jackson Blue",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "185000",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "64cced709658d9dfb1fd2cae",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Category/Celana Jeans.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/products/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/products?q=&sort_by=&page=&per_page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"description": "name"
+								},
+								{
+									"key": "sort_by",
+									"value": "",
+									"description": "asc | desc"
+								},
+								{
+									"key": "page",
+									"value": ""
+								},
+								{
+									"key": "per_page",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/products/:_id/detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":_id",
+								"detail"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64cdac00d5b81c62b4f85791"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Sepatu Osaka Krem Red Navy",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "16000",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "64cceec38d935066475b9710",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Category/Sepatu Osaka Krem Merah Navy.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/products/:_id/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":_id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64cd93cf3838ce1f077c800a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/products/:_id/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64cd923aeeea60f36c3fd5b3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CHECKOUTS",
+			"item": [
+				{
+					"name": "Create Checkouts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cart\" : [\r\n        {\r\n           \"name\": \"Jogger Long Pants Nathan Cokelat\",\r\n            \"price\": 135000,\r\n            \"image\": {\r\n                 \"url\": \"https://res.cloudinary.com/daqswhfvz/image/upload/v1691200511/zkydvarezrdafc7rewzx.png\",\r\n                \"cloudinary_id\": \"zkydvarezrdafc7rewzx\"\r\n            },\r\n              \"category\": {\r\n                \"_id\": \"64ccf272ba1e955c59e94081\",\r\n                \"name\": \"jogger\"\r\n            },\r\n            \"qty\" : 2,\r\n            \"sub_total\" : 370000\r\n        }\r\n    ],\r\n    \"address\" : {\r\n        \"_id\" : \"53256\",\r\n        \"name\" : \"cilacap\"\r\n    },\r\n    \"total\" : 370000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/checkout/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List/All Checkout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/checkout/all?q=&sort_by&page&per_page",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"all"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"description": "invoice"
+								},
+								{
+									"key": "sort_by",
+									"value": null,
+									"description": "asc | desc"
+								},
+								{
+									"key": "page",
+									"value": null,
+									"description": "pages"
+								},
+								{
+									"key": "per_page",
+									"value": null,
+									"description": "per_page"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "History Checkout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/checkout/:_id/history?q=&sort_by&page=&per_page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								":_id",
+								"history"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"description": "invoice"
+								},
+								{
+									"key": "sort_by",
+									"value": null,
+									"description": "asc | desc"
+								},
+								{
+									"key": "page",
+									"value": ""
+								},
+								{
+									"key": "per_page",
+									"value": ""
+								}
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64ce57d533838bf254fa90d1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Checkout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}api/v1/checkout/:invoice/detail",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"v1",
+								"checkout",
+								":invoice",
+								"detail"
+							],
+							"variable": [
+								{
+									"key": "invoice",
+									"value": "INVOICE "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/checkout/:invoice/confirm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								":invoice",
+								"confirm"
+							],
+							"variable": [
+								{
+									"key": "invoice",
+									"value": "INVOICE 1691465986879"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Checkout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/checkout/:invoice/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								":invoice",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "invoice",
+									"value": "INVOICE 1691500412"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADDRESS",
+			"item": [
+				{
+					"name": "Create Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"kantor\",\r\n    \"address\" : \"Jl. nongko sawit RT 005 RW 003\",\r\n    \"province\" : {\r\n        \"_id\" : \"33\",\r\n        \"name\" : \"JAWA TENGAH\"\r\n    },\r\n    \"regency\" :{\r\n         \"_id\" : \"3374\",\r\n        \"name\" : \"KOTA SEMARANG\"\r\n    },\r\n    \"district\" : {\r\n         \"_id\" : \"3374020\",\r\n        \"name\" : \"GUNUNG PATI\"\r\n    },\r\n    \"village\" : {\r\n         \"_id\" : \"3374020001\",\r\n        \"name\" : \"NONGKO SAWIT\"\r\n    },\r\n    \"passcode\" : 50224\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/address/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All/list Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/address/list?q=&sort_by=&page&per_page",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address",
+								"list"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"description": "name"
+								},
+								{
+									"key": "sort_by",
+									"value": "",
+									"description": "asc | desc"
+								},
+								{
+									"key": "page",
+									"value": null
+								},
+								{
+									"key": "per_page",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/address/:_id/detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address",
+								":_id",
+								"detail"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64d2f0c9767e5ccb3b72a777"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Home Sweet\",\r\n    \"address\" : \"Jl. Maulida Rahma RT 006 RW 001\",\r\n    \"province\" : {\r\n        \"_id\" : \"33\",\r\n        \"name\" : \"JAWA TENGAH\"\r\n    },\r\n    \"regency\" :{\r\n         \"_id\" : \"3374\",\r\n        \"name\" : \"KOTA SEMARANG\"\r\n    },\r\n    \"district\" : {\r\n         \"_id\" : \"3374020\",\r\n        \"name\" : \"GUNUNG PATI\"\r\n    },\r\n    \"village\" : {\r\n         \"_id\" : \"3374020002\",\r\n        \"name\" : \"PLALANGAN\"\r\n    },\r\n    \"passcode\" : 50224\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/address/:_id/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address",
+								":_id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64d2f06a767e5ccb3b72a772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/address/:_id/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"address",
+								":_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "64d2f0c9767e5ccb3b72a777"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
