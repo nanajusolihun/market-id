@@ -74,7 +74,7 @@ const allProduct = async (req, res) => {
     const total = await ModelProducts.count(filterName);
     const data = await ModelProducts.find(filterName).sort({ _id: sort_key }).skip(pages).limit(per_page);
 
-    Messages(res, 200, data, { page, per_page, total });
+    Messages(res, 200, "Suceess all data", data, { page, per_page, total });
   } catch (error) {
     Messages(res, 500, error?.message || "Internal server error");
   }
