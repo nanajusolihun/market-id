@@ -76,7 +76,7 @@ const allAddress = async (req, res) => {
     const total = await ModelAddress.count(filter);
     const data = await ModelAddress.find(filter).sort({ _id: sort_key }).skip(pages).limit(per_page);
 
-    Messages(res, 200, "All data address success", data);
+    Messages(res, 200, "All data address success", data, { page, per_page, total });
   } catch (error) {
     Messages(res, 500, error?.message || "Internal Server Error");
   }
@@ -167,9 +167,9 @@ const deleteAddress = async (req, res) => {
     const findAddressByID = await ModelAddress.findOne(filter);
     if (!findAddressByID) return Messages(res, 404, "Data ID Address not found");
 
-    await ModelAddress.deleteOne(filter)
+    await ModelAddress.deleteOne(filter);
 
-    Messages(res, 200, "Delete Address success")
+    Messages(res, 200, "Delete Address success");
   } catch (error) {
     Messages(res, 500, error?.message || "Internal Server Error");
   }
