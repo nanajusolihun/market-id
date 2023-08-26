@@ -67,13 +67,13 @@ const allCheckout = async (req, res) => {
 
     const currentTotal = data.map((item) => item.total);
 
-    let incomes = undefined;
+    let total_expenses = undefined;
 
     if (currentTotal.length) {
-      incomes = currentTotal.reduce((a, b) => a + b);
+      total_expenses = currentTotal.reduce((a, b) => a + b);
     }
 
-    Messages(res, 200, "All Checkout success", { incomes, data }, { page, per_page, total });
+    Messages(res, 200, "All Checkout success", { total_expenses, data }, { page, per_page, total });
   } catch (error) {
     Messages(res, 500, error?.message || "Internal Server Error");
   }
@@ -107,13 +107,13 @@ const historyCheckout = async (req, res) => {
 
     const currentTotal = data.map((item) => item.total);
 
-    let incomes = undefined;
+    let total_expenses = undefined;
 
     if (currentTotal.length) {
-      incomes = currentTotal.reduce((a, b) => a + b);
+      total_expenses = currentTotal.reduce((a, b) => a + b);
     }
 
-    Messages(res, 200, "History checkout success", { incomes, data }, { page, per_page, total });
+    Messages(res, 200, "History checkout success", { total_expenses, data }, { page, per_page, total });
   } catch (error) {
     Messages(res, 500, error?.message || "Internal Server Error");
   }
