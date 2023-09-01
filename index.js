@@ -9,11 +9,11 @@ import r_Categories from "./src/routers/r_categories.js";
 import r_Products from "./src/routers/r_products.js";
 import r_Checkouts from "./src/routers/r_checkouts.js";
 import r_Address from "./src/routers/r_address.js";
+import r_Wilayah from "./src/routers/r_wilayah.js";
 
 const app = express();
 
 app.use(cors());
-// app.use(cors({origin: `http://localhost:${PORT}`}));
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
@@ -24,6 +24,7 @@ app.use("/api/v1", r_Categories);
 app.use("/api/v1", r_Products);
 app.use("/api/v1", r_Checkouts);
 app.use("/api/v1", r_Address);
+app.use("/api/v1", r_Wilayah);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
