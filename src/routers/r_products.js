@@ -8,7 +8,7 @@ import uploadImg from "../middleware/upload_img.js";
 const ROUTER = express.Router();
 
 ROUTER.post("/products/new", authentication, admin, uploadImg, ctreateProduct);
-ROUTER.get("/products", authentication, allProduct);
+ROUTER.get("/products", allProduct);
 ROUTER.get("/products/:_id/detail", authentication, admin, detailProduct);
 ROUTER.put("/products/:_id/update", authentication, admin, uploadImg, updateProduct);
 ROUTER.delete("/products/:_id/delete", authentication, admin, deleteProduct);
